@@ -1,0 +1,77 @@
+.google{
+    display: absolute ;
+    width:25px;
+    height: 25px;
+    padding-right: 20px;
+    margin-top: 0;
+   
+}
+.G-button{
+    padding: 5px;
+    background-color: white;
+    border: 1px solid grey;
+    width: 50%;
+    border-radius: 5px;
+}
+.G-button:hover{
+    border: 2px solid rgb(82, 167, 159);
+}
+.container{
+    display: grid;
+    grid-template-columns: 40% 60%;
+    height: 100vh;
+    width: 100vw;
+}
+.left{
+    background: url('../img/todo.jpg');
+    background-size: cover;
+}
+.right{
+    padding: 100px;
+    text-align: center;
+}
+.right h1{
+    text-align: center;
+    font-size: 3rem;
+}
+
+.right input{
+    height: 50px;
+    width: 100%;
+    border-radius: 7px;
+    border: none;
+    background-color: rgb(238, 234, 234);
+}
+.right input:hover{
+    border: 1px solid rgb(82, 167, 159); 
+}
+.right label{
+    float: left;
+    padding: 3px;
+}
+.control{
+    padding: 10px;
+}
+.button{
+    width: 50%;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: rgb(82, 167, 159);
+    color: white;
+    border: none;
+}
+.button:hover{
+    color: black;
+    background-color: rgb(148, 219, 219);
+    border: 2px solid rgb(82, 167, 159);
+}
+h6{
+    font-size: 1.2rem;
+}
+.check{
+    font-size: 1rem;
+    font-weight: 500;
+}
+.link{
+    color: rgb(7, 175, 161);
+}
