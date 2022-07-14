@@ -2,10 +2,11 @@ import '../css/register.css';
 import google from '../img/google.png';
 import React,{useState} from "react";
 import {Link} from 'react-router-dom';
-import {auth} from '../config/firebase'
+import {auth, provider} from '../config/firebase'
 import {useNavigate} from 'react-router-dom'
-import {signInWithEmailAndPassword} from 'firebase/auth';
-import {provider} from "../config/firebase";
+import {signInWithEmailAndPassword, signInWithPopup} from 'firebase/auth';
+
+
 
 
 function Login(){
@@ -26,7 +27,13 @@ function Login(){
         
     })
     const googleLog = ()=>{
-        
+        signInWithPopup(auth,provider).then((result)=>{
+            // alert("successfully logged in")
+            console.log(result);
+            // history("/home");
+        }).catch((err)=>{
+            console.log(err);
+        })
         
     }
     
