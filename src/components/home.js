@@ -3,7 +3,10 @@ import {db} from '../config/firebase';
 import {addDoc, collection,doc, deleteDoc,getDocs,query,where} from 'firebase/firestore';
 import '../css/home.css'
 
+
 function Home({user,logout}){
+    
+    
 
     const[task, setTask]= useState('');
     const[priority, setPriority] = useState('');
@@ -13,6 +16,7 @@ function Home({user,logout}){
     const itemRef =collection(db,"Tasks");
 
     const getItems = async()=>{
+        console.log(user);
         if(user.email !== undefined){
             const q = query(itemRef, where("email","==", user.email))
         let data = await getDocs(q);
@@ -37,7 +41,10 @@ function Home({user,logout}){
       }
     }
       const deleteTask = async(id)=>{
+        console.log(itemRef, id);
         let task = doc(itemRef,id);
+        console.log('task: ')
+        // return
         await deleteDoc(task).then(
             promise => {
                 alert("deleted");
@@ -48,10 +55,12 @@ function Home({user,logout}){
       }
     
 
-
       useEffect(()=>{
+        console.log("some")
         getItems();
+        console.log(getItems())
      }, [])
+     
 
     return(
         <div className="home">
@@ -91,18 +100,18 @@ function Home({user,logout}){
                                         
                                         <div className="item" style={{borderBottom: "3px solid green"}}>
                                         <span>{item.task}</span>
-                                        <button onClick={deleteTask}>complete</button>
+                                        <button onClick={() => deleteTask(item.id)}>complete</button>
                                         </div>
                                 
                                     ):item.priority == "Medium" ? (
                                         <div className="item" style={{borderBottom: "3px solid orange"}}>
                                         <span>{item.task}</span>
-                                        <button onClick={deleteTask}>complete</button>
+                                        <button onClick={() => deleteTask(item.id)}>complete</button>
                                         </div>
                                     ):item.priority == "High" ? (
                                         <div className="item" style={{borderBottom: "3px solid red"}}>
                                         <span>{item.task}</span>
-                                        <button onClick={deleteTask}>complete</button>
+                                        <button onClick={() => deleteTask(item.id)}>complete</button>
         
                                         </div>
                                     ):(

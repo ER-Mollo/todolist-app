@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import React,{useState} from 'react';
+import React,{useEffect, useState} from 'react';
 import './App.css';
 
 
@@ -11,8 +11,8 @@ import Home from './components/home';
 
 import {useNavigate} from 'react-router-dom';
 
-import {signInWithEmailAndPassword} from 'firebase/auth';
- import {createUserWithEmailAndPassword,updateProfile,signInWithPopup, signOut} from 'firebase/auth';
+import {onAuthStateChanged, signInWithEmailAndPassword} from 'firebase/auth';
+ import {createUserWithEmailAndPassword,updateProfile,signInWithPopup, signOut, } from 'firebase/auth';
 import {auth,provider} from './config/firebase';
 
 
@@ -25,7 +25,13 @@ function App() {
     const [password, setPassword]= useState("");
     const [user,setUser] = useState({});
     
-
+    useEffect( () => {
+      onAuthStateChanged(auth, (user) => {
+        console.log(user);
+        setUser(auth.currentUser);
+      })
+    }, [])
+    console.log(user);
     let history = useNavigate();
 
     const register = async()=>{
@@ -97,7 +103,7 @@ function App() {
 
           <Route path = "/sign-up" element={<Register setName={setName} setEmail={setEmail} setPassword={setPassword} fullname={fullname} user={user} register={register} googleLog={googleLog}/>}/>
 
-          <Route path = "/home" element={<Home fullname={fullname} user={user} displayName={user.displayName} logout={logout}/> }/> 
+          <Route path = "/home" element={<Home fullname={fullname} user={user}  logout={logout}/> }/> 
 
         </Routes>
 

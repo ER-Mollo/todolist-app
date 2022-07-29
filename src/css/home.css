@@ -21,6 +21,7 @@
 }
 .input{
     display: flex;
+    flex-wrap: wrap;
     padding-bottom: 10%;
     justify-content: space-between;
     
